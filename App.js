@@ -26,8 +26,9 @@ import QRcodeComponent from "./Src/Component/QRcodeComponent";
 import ScannerComponent from "./Src/Component/ScannerQrCodeComponent";
 import ConnexionForm from "./Src/Component/ConnexionForm";
 import ViroSceneSampleTest from "./Src/Component/ARVisualisationComponent";
-
-
+import ARVisualisationComponent from "./Src/Component/ARVisualisationComponent";
+import { Buffer } from 'buffer';
+global.Buffer = Buffer;
 
 const App: () => Node = () => {
 
@@ -35,7 +36,7 @@ const App: () => Node = () => {
 
   return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="MainPage">
+        <Stack.Navigator initialRouteName="Connexion">
           <Stack.Screen name={"Connexion"} component={ConnexionForm}></Stack.Screen>
           <Stack.Screen name={"QRCode"} component={QRcodeComponent}></Stack.Screen>
           <Stack.Screen name={"MainPage"} component={MainPageComponent}></Stack.Screen>
@@ -44,7 +45,8 @@ const App: () => Node = () => {
           <Stack.Screen name={"ScannerQR"} component={ScannerComponent}></Stack.Screen>
 
           <Stack.Screen name={"DetailProduct"} component={DetailProductComponent}></Stack.Screen>
-          
+          <Stack.Screen name={"ARVisualisation"} component={ARVisualisationComponent}></Stack.Screen>
+
         </Stack.Navigator>
 
       </NavigationContainer>

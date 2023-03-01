@@ -27,35 +27,8 @@ const ConnexionForm = props => {
 
 
   const sendEmailWithQRCode = () => {
-
-    const token = jwt.sign({ id: 1 }, privateKey, { expiresIn: '10h' });
-    // Générer le QR code en utilisant la bibliothèque react-native-qrcode-svg
-    const qrCode = (
-      <QRCode
-        value={token}
-        size={200}
-      />
-    );
-
-
-    Mailer.mail({
-      subject: 'QR code généré',
-      recipients: [login],
-      body: 'qrCode',
-      isHTML: true,
-      attachment: {
-        base64:qrCode.current.btoa(qrCode.toString()),
-        type: 'png',
-        name: 'qrcode.png',
-      },
-    }, (error, event) => {
-      if (error) {
-        console.log('Erreur lors de l\'envoi de l\'e-mail', error);
-      } else {
-        console.log('E-mail envoyé avec succès', event);
-      }
-    });
-  };
+    props.navigation.navigate("QRCode")
+  }
 
     // Envoyer un e-mail avec le QR code en tant que pièce joint
   const createQR = () => {
