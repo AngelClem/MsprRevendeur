@@ -83,6 +83,7 @@ const DetailProductComponent = (props) =>{
                     textAlign: 'center',
                     marginTop: 10,
                     marginBottom: 10,
+
                 }}>
                   {name}
               </Text>
