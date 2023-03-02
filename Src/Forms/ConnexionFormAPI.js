@@ -3,7 +3,7 @@ import { BASE_API_PORT, BASE_API_URL } from "../Config";
 export function getCustomer(id){
   return new Promise((resolve,reject)=>{
 
-        fetch(BASE_API_URL + ':' + BASE_API_PORT + "/api/customer/"+id, {
+        fetch(BASE_API_URL + ':' + BASE_API_PORT + "/api/customers/"+id, {
           method: 'GET',
           headers: {
             Accept: 'application/json',

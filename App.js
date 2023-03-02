@@ -36,7 +36,9 @@ const App: () => Node = () => {
 
   return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Connexion">
+        <Stack.Navigator screenOptions={{
+          headerShown: false
+        }} initialRouteName="Connexion">
           <Stack.Screen name={"Connexion"} component={ConnexionForm}></Stack.Screen>
           <Stack.Screen name={"QRCode"} component={QRcodeComponent}></Stack.Screen>
           <Stack.Screen name={"MainPage"} component={MainPageComponent}></Stack.Screen>

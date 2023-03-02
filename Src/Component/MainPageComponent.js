@@ -11,40 +11,12 @@ import {
     useColorScheme,
     View,
 } from 'react-native';
-import { getCustomer, getProduct } from "../Forms/ConnexionFormAPI";
+import { getCustomer} from "../Forms/ConnexionFormAPI";
 
 
 
 const MainPageComponent = (props) => {
 
-    const RenderItem = () => {
-        let firstName = customer.firstName;
-        let lastName = customer.lastName;
-        // let company = customer.company.companyName;
-
-        return (
-          <View style={styles.customer}>
-              <View style={styles.customerDetails}>
-                  <Text>
-                      Prénom: <Text style={styles.bold}>{firstName}</Text>
-                  </Text>
-                  <Text>
-                      Nom: <Text style={styles.bold}>{lastName}</Text>
-                  </Text>
-                  <Text>
-                      {/* Entreprise: <Text style={styles.bold}>{company}</Text> */}
-                  </Text>
-              </View>
-
-              <Image
-                style={styles.tinyLogo}
-                source={{
-                    uri: 'data:image/png;base64,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',
-                }}
-              />
-          </View>
-        );
-    };
 
     function goToArVisualisation(){
         props.navigation.navigate("DetailProduct")
@@ -59,69 +31,151 @@ const MainPageComponent = (props) => {
         props.navigation.navigate("LoginPage");
     }
     function Deconnexion() {
-        props.navigation.navigate('');
+        props.navigation.navigate('Connexion');
     }
 
     const [customer, setCustomer] = useState({});
+    const [company, setCompany] = useState("Formul PME")
+    const [adress, setAdress] = useState("Nantes")
 
 
     useEffect(()=>{
         let c = {};
         getCustomer(1).then((custo)=>{
+          console.log("custo.company")
+          console.log(custo.company)
             setCustomer(custo);
+            setCompany(custo.company.companyName)
+            setAdress(custo.adress.city)
         })
-        getProduct(1).then((prod)=>{
-            console.log(prod, 'prod')
-        })
+
     },[])
 
+  const RenderItem = () => {
+    let firstName = customer.firstName;
+    let lastName = customer.lastName;
+
+    // let company = customer.company.companyName;
+
     return (
-      <View>
-          <Text style={styles.header}>Paye Ton Kawa</Text>
-          <TouchableOpacity
-            style={{
-                margin: 25,
+      <View style={styles.customer}>
+        <View style={styles.customerDetails}>
+          <View style={{flexDirection : "row"}}>
+            <Text style={styles.label}>
+            Prénom:
+            </Text>
+            <Text style={styles.bold}>{firstName}</Text></View>
+          <View style={{flexDirection:"row"}}>
+            <Text style={styles.label}>
+              Nom:
+            </Text>
+            <Text style={styles.bold}>{lastName}</Text>
+          </View>
+
+          <View style={{flexDirection:"row"}}>
+            <Text style={styles.label}>
+              Adresse :
+            </Text>
+            <Text style={styles.bold}>{adress}</Text>
+          </View>
+
+          <View style={{flexDirection:"row"}}>
+            <Text style={styles.label}>
+              Entreprise:
+            </Text>
+            <Text style={styles.bold}>{company}</Text>
+          </View>
+          <View style={{flexDirection:"row"}}>
+            <Text style={styles.label}>
+              Nombre de commande :
+            </Text>
+            <Text style={styles.bold}>2</Text>
+          </View>
+
+          <Text>
+
+          </Text>
+        </View>
+
+        <Image
+          style={styles.tinyLogo}
+          source={{
+            uri:'data:image/png;base64,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\n'
+          }}
+        />
+      </View>
+    );
+  };
+
+
+  return (
+      <View style={{backgroundColor:'white' , height:'100%'}}>
+        <Text style={{fontStyle:"italic", fontSize:45, textAlign:'center'}}>Paye Ton Kawa !</Text>
+        <View>
+            <TouchableOpacity
+              style={{
+                margin: 5,
                 padding: 5,
-                flexDirection: 'column',
                 borderRadius: 15,
-                borderWidth: 0.5,
-                height: '8%',
-                width: '50%',
-                marginRight: 'auto',
-                marginLeft: 'auto',
-                backgroundColor: 'lightgreen',
-            }}
-            onPress={goToListDetails}>
-              <Text style={{textAlign: 'center', fontSize: 18, paddingTop: 7}}>
-                  Liste des produits
+                borderWidth: 0.7,
+
+                backgroundColor: '#14A44D',
+              }}
+              onPress={goToListDetails}>
+              <Text style={{textAlign: 'center', fontSize: 18, paddingTop: 7,color:'white'}}>
+                Liste des produits
               </Text>
-          </TouchableOpacity>
+            </TouchableOpacity>
+          </View>
+
+        <View style={{borderTopWidth : 0.5, margin:1}}>
           <Text
             style={{
-                textAlign: 'center',
-                padding: 20,
-                fontWeight: 'bold',
-                fontSize: 16,
+              textAlign: 'center',
+              padding: 15,
+              fontWeight: 'bold',
+              fontSize: 25,
             }}>
-              Détails du Client
+            Détails du Client
           </Text>
+        </View>
+
           <RenderItem />
           <TouchableOpacity
             style={{
-                margin: 25,
+                marginTop: 10,
+                marginBottom: 10,
                 padding: 5,
                 flexDirection: 'column',
                 borderRadius: 15,
                 borderWidth: 0.5,
                 height: '8%',
-                width: '50%',
+                width: '80%',
                 marginRight: 'auto',
                 marginLeft: 'auto',
-                backgroundColor: 'red',
+                backgroundColor: '#DC4C64',
             }}
             onPress={Deconnexion}>
-              <Text style={{textAlign: 'center', fontSize: 18, paddingTop: 7}}>
+              <Text style={{textAlign: 'center', fontSize: 18, paddingTop: 7, color:"white"}}>
                   Déconnexion
+              </Text>
+          </TouchableOpacity>
+        <TouchableOpacity
+            style={{
+
+                padding: 5,
+                flexDirection: 'column',
+                borderRadius: 15,
+                borderWidth: 0.5,
+                height: '8%',
+                width: '80%',
+                marginRight: 'auto',
+                marginLeft: 'auto',
+                backgroundColor: '#f0ad4e',
+            }}
+            onPress={Deconnexion}>
+              <Text style={{textAlign: 'center', fontSize: 18, paddingTop: 7, color:"white"}}>
+                  Modifier les informations utilisateur
               </Text>
           </TouchableOpacity>
       </View>
@@ -144,10 +198,11 @@ const styles = StyleSheet.create({
         fontSize: 22,
     },
     bold: {
-        fontWeight: 'bold',
-        fontSize: 18,
+        marginLeft:2,
+        fontSize: 15,
         textAlign: 'center',
     },
+    label : {textDecorationLine:"underline" , fontSize:15, fontWeight:'bold'},
     customer: {
         display: 'flex',
         flexDirection: 'row',
@@ -157,6 +212,7 @@ const styles = StyleSheet.create({
         borderRadius:15,
         borderWidth:0.5,
         padding: 16,
+      margin:2,
     },
     customerDetails: {
         display: 'flex',
